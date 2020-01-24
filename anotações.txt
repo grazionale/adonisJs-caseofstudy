@@ -13,6 +13,15 @@ Colocando o servidor online
 * a opção --dev ativa a opção do nodemon (fast reload). Quando usar em produção
 nao usar o --dev
 
+------------ Instalando e configurando EsLint ---------------------
+ npm install -D eslint
+ npx eslint --init
 
 ------------ Rodando migrations banco de dados relacional ---------------------
 adonis migration:run
+
+------------ Criando Controller ----------------
+adonis make:controller User
+** depois seleciona HTTP requests
+------------ Listando Rotas ----------------
+adonis route:list
