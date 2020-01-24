@@ -3,7 +3,7 @@
 const User = use('App/Models/User')
 
 class UserController {
-  async store ({request}) { // request -> contexto de uma requisição, parecido com req, e res usado no Express
+  async store ({ request }) {
     const data = request.only(['username', 'email', 'password'])
 
     const user = await User.create(data)
