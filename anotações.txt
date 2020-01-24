@@ -1,0 +1,18 @@
+Instalação AdonisJs CLI
+  npm install -g @adonisjs/cli
+
+Criando uma nova aplicação com Adonis
+  adonis new -h
+* -h para ver as opções disponíveis
+
+Criando projeto voltado apenas para API, sem a parte MVC de views
+adonis new gonode --api-only
+
+Colocando o servidor online
+  adonis serve --dev
+* a opção --dev ativa a opção do nodemon (fast reload). Quando usar em produção
+nao usar o --dev
+
+
+------------ Rodando migrations banco de dados relacional ---------------------
+adonis migration:run
