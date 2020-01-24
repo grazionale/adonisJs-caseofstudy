@@ -25,3 +25,5 @@ adonis make:controller User
 ** depois seleciona HTTP requests
 ------------ Listando Rotas ----------------
 adonis route:list
+------------ Rollback das migrations-------------
+adonis migration:rollback
