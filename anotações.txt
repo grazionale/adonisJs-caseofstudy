@@ -27,3 +27,16 @@ adonis make:controller User
 adonis route:list
 ------------ Rollback das migrations-------------
 adonis migration:rollback
+------------ Envio de e-mail com adonis -------------
+doc: https://adonisjs.com/docs/4.1/mail
+adonis install @adonisjs/mail
+
+Depois, é necessário configurar um ViewProvider
+app.js
+const providers = [
+  '@adonisjs/framework/providers/ViewProvider'
+]
+
+Depois, criar um template na raiz do projeto resouces/views/emails/nome_do_template.edge
+
+----------
