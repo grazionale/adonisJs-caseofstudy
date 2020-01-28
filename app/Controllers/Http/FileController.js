@@ -41,6 +41,12 @@ class FileController {
     return response.download(Helpers.tmpPath(`uploads/${file.file}`))
   }
 
+  async index () {
+    const files = await File.all()
+
+    return files
+  }
+
 }
 
 module.exports = FileController
