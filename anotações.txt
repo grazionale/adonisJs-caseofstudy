@@ -39,4 +39,8 @@ const providers = [
 
 Depois, criar um template na raiz do projeto resouces/views/emails/nome_do_template.edge
 
-----------
+------------ Criando Model ----------------
+
+adonis make:model File -m -c
+-m -> Cria migration
+-c -> Cria controller
