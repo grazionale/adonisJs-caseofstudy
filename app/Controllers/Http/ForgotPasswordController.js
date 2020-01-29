@@ -6,7 +6,7 @@ const User = require('../../Models/User')
 const Mail = use('Mail')
 
 class ForgotPasswordController {
-  async store({ request, response }) {
+  async store ({ request, response }) {
     try {
       const email = request.input('email') // input busca apenas 1 campo na req
       const user = await User.findByOrFail('email', email) // Caso ele não encontre um usuário, ele retorna um erro e cai no catch
@@ -21,15 +21,15 @@ class ForgotPasswordController {
         { email, token: user.token, link: `${request.input('redirect_url')}?token=${user.token}` },
         (message) => {
           message.from('foo@bar.com').to(user.email).subject('Recuperação de senha')
-      })
+        })
     } catch (error) {
-      return response.status(error.status).send({ error: { message: 'Algo não deu certo, esse e-mail existe?' }})
+      return response.status(error.status).send({ error: { message: 'Algo não deu certo, esse e-mail existe?' } })
     }
   }
 
-  async update({ request, response }) {
+  async update ({ request, response }) {
     try {
-      const { token, password} = request.all()
+      const { token, password } = request.all()
       const user = await User.findByOrFail('token', token)
 
       /**
@@ -37,8 +37,8 @@ class ForgotPasswordController {
        */
       const tokenExpired = moment().subtract('2', 'days').isAfter(user.token_created_at)
 
-      if(tokenExpired) {
-        return response.status(401).send({ error: { message: 'O token de recuperação está expirado.' }})
+      if (tokenExpired) {
+        return response.status(401).send({ error: { message: 'O token de recuperação está expirado.' } })
       }
 
       user.token = null
@@ -46,12 +46,10 @@ class ForgotPasswordController {
       user.password = password
 
       await user.save()
-
     } catch (error) {
-        return response.status(error.status).send({ error: { message: 'Algo deu errado ao resetar sua senha =(' }})
+      return response.status(error.status).send({ error: { message: 'Algo deu errado ao resetar sua senha =(' } })
     }
   }
 }
-
 
 module.exports = ForgotPasswordController

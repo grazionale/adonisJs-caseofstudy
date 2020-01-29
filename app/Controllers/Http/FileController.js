@@ -4,13 +4,11 @@ const File = use('App/Models/File')
 const Helpers = use('Helpers')
 
 class FileController {
-
   async store ({ request, response }) {
     try {
+      if (!request.file('file')) return
 
-      if(!request.file('file')) return
-
-      const upload = request.file('file', { size: '2mb'} )
+      const upload = request.file('file', { size: '2mb' })
 
       const fileName = `${Date.now()}.${upload.subtype}`
 
@@ -18,7 +16,7 @@ class FileController {
         name: fileName
       })
 
-      if(!upload.moved()) {
+      if (!upload.moved()) {
         throw upload.error()
       }
 
@@ -46,7 +44,6 @@ class FileController {
 
     return files
   }
-
 }
 
 module.exports = FileController
