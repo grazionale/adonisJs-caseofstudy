@@ -44,3 +44,18 @@ Depois, criar um template na raiz do projeto resouces/views/emails/nome_do_templ
 adonis make:model File -m -c
 -m -> Cria migration
 -c -> Cria controller
+
+------------------------Validator-------------------------
+Validando requisiçoes
+https://adonisjs.com/docs/4.1/validator
+
+adonis install @adonisjs/validator
+
+adonis make:validator User
+
+------------------------Tratanodo exceções--------------
+Como se fosse um GlobalExceptionHandler
+adonis make:ehandler
+Necessário alterar o comportamento padrão dos métodos do handle,
+localizados em Exceptions/Handler.js
+
