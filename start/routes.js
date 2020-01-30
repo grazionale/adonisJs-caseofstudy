@@ -19,4 +19,13 @@ Route.group(() => {
    * automaticamente
    */
   Route.resource('projects', 'ProjectController').apiOnly()
+  /**
+   * Tasks
+   * Ao utilizar projects.tasks estamos criando rotas /projects/tasks, entre
+   * outras similares.
+   * Forçando que sempre que formos trabalhar com task, antes precisamos
+   * saber qual projeto está relacionado, ou seja, task sempre precisa de um
+   * pai project
+   */
+  Route.resource('projects.tasks', 'TaskController').apiOnly()
 }).middleware(['auth'])
