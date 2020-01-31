@@ -6,10 +6,11 @@ class ProjectController {
   /**
    *  .query inicia um query
    *  .with começa a criação de um relacionamento
-   *  .fetch para finalizar a query
+   *  .fetch para finalizar a query e se for usar paginação, coloca .paginate()
    */
-  async index () {
-    const projects = await Project.query().with('user').fetch()
+  async index ({ request }) {
+    const { page } = request.get() // Captura os parâmetros da URL
+    const projects = await Project.query().with('user').paginate(page)
 
     return projects
   }
