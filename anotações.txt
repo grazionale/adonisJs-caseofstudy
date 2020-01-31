@@ -53,6 +53,11 @@ adonis install @adonisjs/validator
 
 adonis make:validator User
 
+Validando objetos aninhados
+Exemplo: Um usuário com Endereços
+
+https://indicative-v5.adonisjs.com/docs/syntax-guide#_nested_data
+
 ------------------------Tratanodo exceções--------------
 Como se fosse um GlobalExceptionHandler
 adonis make:ehandler

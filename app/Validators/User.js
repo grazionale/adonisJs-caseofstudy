@@ -14,9 +14,13 @@ class User {
     return {
       username: 'required|unique:users', // único na tabela de users
       email: 'required|email|unique:users',
-      password: 'required|confirmed' // confirmed: força que seja enviado a
+      password: 'required|confirmed', // confirmed: força que seja enviado a
       // confirmação de senha "password_confirmation" mesmo que ela não exista
       // no model nem na migration
+      'addresses.*.street': 'required',
+      'addresses.*.number': 'required',
+      'addresses.*.city': 'required',
+      'addresses.*.state': 'required'
     }
   }
 
