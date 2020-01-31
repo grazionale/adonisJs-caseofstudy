@@ -67,3 +67,10 @@ adonis install @adonisjs/antl
 const providers = [
   '@adonisjs/antl/providers/AntlProvider'
 ]
+
+
+---------------Hooks - interceptors--------------------
+Criação de um 'interceptor' para Tasks, onde, toda vez que
+uma task for criada ou editada e houver um user_id, esse usuário
+receberá um e-mail informando que essa tarefa pertecen a ele
+adonis make:hook Task
