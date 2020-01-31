@@ -10,7 +10,7 @@ class TaskController {
   }
 
   async store ({ params, request, auth }) {
-    const data = request.only(['title', 'description', 'due_date', 'file_id'])
+    const data = request.only(['title', 'description', 'due_date', 'file_id', 'user_id'])
 
     const task = await Task.create({ ...data, project_id: params.projects_id })
 
