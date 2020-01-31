@@ -125,3 +125,20 @@ adonis make:job NewTaskMail
 
 depois de tudo configurado, tem que colocar o kue para ficar ouvindo
 adonis kue:listen
+
+------------------- Utilizando Sentry ---------------------
+
+no arquivo Handler.js utilizar a seguinte configuração
+
+instalar raven
+
+yarn add raven
+
+async report (error, { request }) {
+  Raven.config(Config.get('services.sentry.dsn'))
+  Raven.captureException(error)
+}
+
+colocar o dsn nas variaveis ambientes
+
+e configurar um service na pasta config para reotrnar o sentry dsn
