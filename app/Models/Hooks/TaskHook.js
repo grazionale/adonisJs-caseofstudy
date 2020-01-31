@@ -1,8 +1,8 @@
 'use strict'
 
 const TaskHook = exports = module.exports = {}
-const Mail = use('Mail')
-const Helpers = use('Helpers')
+const Kue = use('Kue')
+const Job = use('App/Jobs/NewTaskMail')
 /**
  * Dispara um e-mail para um usuário toda vez que ele for associado a uma tarefa
  */
@@ -17,23 +17,10 @@ TaskHook.sendNewTaskMail = async taskInstance => {
   const file = await taskInstance.file().fetch()
   const { title } = taskInstance
 
-  await Mail.send(
-    ['emails.new_task'],
-    { username, title, hasAttachment: !!file },
-    message => {
-      message.to(email)
-        .from('gabriel@hotmail.com')
-        .subject('Nova tarefa para você')
-
-      /**
-        * Se tiver um arquivo na tarefa, então anexa ela no e-mail.
-        * Helpers irá pegar o arquivo temporário, e em seguida, renomear
-        * para o nome original do arquivo, substituindo o nome temporário.
-      */
-      if (file) {
-        message.attach(Helpers.tmpPath(`uploads/${file.file}`), {
-          filename: file.name
-        })
-      }
-    })
+  /**
+   * Key do Job, parametros, configurações (opcional)
+   * attempts é um parametro de configuração que tenta realizar o disparo
+   * deste job até 3 vezes
+   */
+  Kue.dispatch(Job.key, { email, username, file, title }, { attempts: 3 })
 }

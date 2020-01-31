@@ -73,4 +73,55 @@ const providers = [
 Criação de um 'interceptor' para Tasks, onde, toda vez que
 uma task for criada ou editada e houver um user_id, esse usuário
 receberá um e-mail informando que essa tarefa pertecen a ele
+
 adonis make:hook Task
+
+
+--------------Usando Redis para disparo de e-mail por file ------------------
+
+Instalando o container do Redis Alpine
+--name = nome para o container
+-p = redireciona a porta A da máquina para a Porta B correspondente no Docker
+-d = passar o nome da imagem que sera utilizada
+a versão alpine é uma versão mimificada do redis, com uma versão muito pequena
+do linux rodando sobre ela
+
+
+docker run --name redis -p 6379:6379 -d redis:alpine
+
+Integarndo Redis no Adonis
+https://adonisjs.com/docs/4.1/redis
+
+> adonis install @adonisjs/redis
+
+const providers = [
+  '@adonisjs/redis/providers/RedisProvider'
+]
+
+modifica a biblioteca kue padrão do node para funcionar com adonis. biblioteca
+para fazer o gerenciamento de filas.
+
+https://github.com/nrempel/adonis-kue
+
+yarn add adonis-kue
+
+const providers = [
+  ...
+  'adonis-kue/providers/KueProvider'
+]
+
+const aceProviders = [
+  ...
+  'adonis-kue/providers/CommandsProvider'
+]
+
+const jobs = [
+  ...
+  'App/Jobs/Example'
+]
+
+adonis make:job NewTaskMail
+- Seguir a instrução do comando
+
+depois de tudo configurado, tem que colocar o kue para ficar ouvindo
+adonis kue:listen
