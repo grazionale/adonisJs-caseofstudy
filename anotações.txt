@@ -59,3 +59,11 @@ adonis make:ehandler
 Necessário alterar o comportamento padrão dos métodos do handle,
 localizados em Exceptions/Handler.js
 
+-----------------Internacionalizaçao----------------
+https://adonisjs.com/docs/4.1/internationalization
+
+adonis install @adonisjs/antl
+
+const providers = [
+  '@adonisjs/antl/providers/AntlProvider'
+]

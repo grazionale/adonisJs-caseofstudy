@@ -1,5 +1,6 @@
 'use strict'
 
+const Antl = use('Antl')
 class User {
   /**
    * Por padrão, o Adonis retorna apenas o primeiro erro, sendo assim, fazemos
@@ -17,6 +18,10 @@ class User {
       // confirmação de senha "password_confirmation" mesmo que ela não exista
       // no model nem na migration
     }
+  }
+
+  get messages () {
+    return Antl.list('validation')
   }
 }
 
