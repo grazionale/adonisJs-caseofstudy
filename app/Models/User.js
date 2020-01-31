@@ -25,6 +25,10 @@ class User extends Model {
   tasks () {
     return this.hasMany('App/Models/Task') // Um usuário tem várias tarefas
   }
+
+  addresses () {
+    return this.hasMany('App/Models/UserAddress')
+  }
 }
 
 module.exports = User
