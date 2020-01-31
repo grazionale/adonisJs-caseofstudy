@@ -32,4 +32,4 @@ Execute o seguinte comando para rodar as migrações na base de dados
 adonis migration:run
 ```
 ## Author
-Gabriel Grazionale Gomes Fernand
+Gabriel Grazionale Gomes Fernandes
